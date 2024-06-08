@@ -111,25 +111,17 @@
             left: 20px;
             font-size: 1.5em;
         }
-        .logo a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .logo a:hover {
-            color: #bbb;
-        }
     </style>
 </head>
 <body>
-    <div class="logo"><a href="#">BONSAIMART</a></div>
+    <div class="logo">BONSAIMART</div>
     <div class="container">
         <div class="sidebar">
             <h1>Bonsai Mart</h1>
             <p>Find the best bonsai. With fast delivery, decorate your space with natural beauty!</p>
             <div class="buttons">
-                <a href="{{ url('/register') }}">Register</a>
-                <a href="{{ url('/login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+                <a href="{{ route('login') }}">Login</a>
             </div>
         </div>
         <div class="main-content">

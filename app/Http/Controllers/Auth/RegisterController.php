@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,6 +13,18 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+
+        // You can log the user in automatically after registration
+        auth()->login($user);
+
+        return redirect('/'); // Redirect to home page or any other page
     }
 
     protected function validator(array $data)
@@ -31,16 +43,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        $user = $this->create($request->all());
-
-        auth()->login($user);
-
-        return redirect()->route('home');
     }
 }

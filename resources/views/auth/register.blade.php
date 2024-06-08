@@ -55,6 +55,7 @@
         }
         .register-form button:hover {
             background-color: #3b6a45;
+            cursor: pointer;
         }
         .register-form .or {
             text-align: center;
@@ -110,28 +111,30 @@
         .register-form .login-link a {
             color: #0070E0;
             text-decoration: underline;
+            transition: color 0.3s ease
         }
-
+        .register-form .login-link a:hover {
+            color: #bbb;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="register-form">
+        <form class="register-form" method="POST" action="{{ route('register') }}">
+            @csrf
             <h2>Register</h2>
-            <form method="POST" action="{{ route('register') }}">
-                @csrf
-                <input type="text" name="name" placeholder="Full Name" required autofocus>
-                <input type="email" name="email" placeholder="E-mail" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Register</button>
-            </form>
-            <div class="or">or continue with</div>
-            <button class="google-button">
-                <img src="images/google.png" alt="Google">
-                Google
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+            <div class="or">or</div>
+            <button type="button" class="google-button">
+                <img src="{{ asset('images/google.png') }}" alt="Google Icon">
+                Sign up with Google
             </button>
             <div class="login-link">Already have an account? <a href="{{ route('login') }}">Login</a></div>
-        </div>
+        </form>
     </div>
 </body>
 </html>

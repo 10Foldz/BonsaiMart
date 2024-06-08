@@ -8,129 +8,131 @@
     <style>
         body {
             margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            display: flex;
-            height: 100vh;
-            background-color: #333;
-            color: #f5f5f5;
+            background: url('/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
-        .login-container {
+        .container {
             display: flex;
-            flex: 1;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .login-form {
-            background-color: #1b1b1b;
-            padding: 2rem;
-            width: 30%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 500px;
+            color: #fff;
         }
-        .login-form h1 {
-            margin-bottom: 1.5rem;
-            color: #88a364;
+        .login-form h2 {
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 30px;
+            color: #6ab04c;
             font-family: 'Bellota', sans-serif;
-        }
-        .login-form label {
-            display: block;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
         }
         .login-form input {
-            width: 90%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #444;
-            border-radius: 4px;
-            background-color: #222;
-            color: #f5f5f5;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
         }
         .login-form button {
-            padding: 0.75rem 1.5rem;
+            width: 100%;
+            padding: 10px;
             background-color: #294e2e;
             border: none;
-            border-radius: 4px;
-            color: #f5f5f5;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Baskervville', sans-serif;
             transition: background-color 0.3s ease;
-            cursor: pointer;
         }
         .login-form button:hover {
             background-color: #3b6a45;
+            cursor: pointer;
         }
-        .register-link {
-            margin-top: 1rem;
-            color: #828282;
-            display: flex;
-            justify-content: center;
-            font-family: 'Inter', sans-serif;
-        }
-        .register-link a {
-            color: #0070E0;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-        }
-        .register-link a:hover {
-            text-decoration: underline;
-        }
-        .info-section {
-            background-image: url('/images/background.jpg');
-            background-size: cover;
-            background-position: center;
-            width: 70%;
+        .login-form .or {
+            text-align: center;
+            margin: 10px 0;
             position: relative;
+            color: #828282;
+            font-family: 'Inter', sans-serif;
+        }
+        .login-form .or::before,
+        .login-form .or::after {
+            content: '';
+            height: 1px;
+            width: 40%;
+            background: #828282;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+        }
+        .login-form .or::before {
+            left: 0;
+        }
+        .login-form .or::after {
+            right: 0;
+        }
+        .login-form .google-button {
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-end;
-            padding: 2rem;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            transition: none;
         }
-        .info-section-content {
-            text-align: left;
-            max-width: 1000px;
+        .login-form .google-button:hover {
+            background-color: #fff;
         }
-        .info-section h2 {
-            margin-bottom: 1rem;
-            color: #f5f5f5;
-            font-family: 'Baskervville', sans-serif;
-            font-size: 4rem;
+        .login-form .google-button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
         }
-        .info-section p {
-            color: #f5f5f5;
-            font-family: 'Baskervville', sans-serif;
-            font-size: 1.5rem;
+        .login-form .register-link {
+            text-align: center;
+            margin-top: 10px;
+            color: #828282;
+            font-family: 'Inter', sans-serif;
+        }
+        .login-form .register-link a {
+            color: #0070E0;
+            text-decoration: underline;
+            transition: color 0.3s ease
+        }
+        .login-form .register-link a:hover {
+            color: #bbb;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <h1>Login</h1>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required autofocus class="wide">
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required class="wide">
-                </div>
-                <div class="button-container">
-                    <button type="submit">Login</button>
-                </div>
-            </form>
-            <div class="register-link">
-                <p>Don't have an account yet? <a href="{{ route('register') }}">Register</a></p>
-            </div>
-        </div>
-        <div class="info-section">
-            <div class="info-section-content">
-                <h2>BonsaiMart</h2>
-                <p>BonsaiMart is the ultimate digital destination for bonsai lovers, both beginners and experts. The website offers a complete product catalog, ranging from ready-to-display bonsai seedlings and trees to high-quality tools and accessories. With an active community and responsive customer support, BonsaiOnline is the ideal place to learn, share, and fulfill all your bonsai needs.</p>
-            </div>
-        </div>
+    <div class="container">
+        <form class="login-form" method="POST" action="{{ route('login') }}">
+            @csrf
+            <h2>Login</h2>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <div class="or">or</div>
+            <button type="button" class="google-button">
+                <img src="{{ asset('images/google.png') }}" alt="Google Icon">
+                Sign in with Google
+            </button>
+            <div class="register-link">Don't have an account? <a href="{{ route('register') }}">Register</a></div>
+        </form>
     </div>
 </body>
 </html>
