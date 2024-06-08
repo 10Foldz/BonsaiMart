@@ -22,7 +22,7 @@
             text-align: center;
             background: rgba(0, 0, 0, 0.5);
             width: 600px;
-            height: 400px;
+            height: 350px;
             border-radius: 10px;
             position: relative;
             padding: 20px;
@@ -94,8 +94,8 @@
         </div>
         <h1>Login as:</h1>
         <div class="buttons">
-            <a href="{{ route('login') }}">Seller</a>
-            <a href="{{ route('login') }}">Customer</a>
+            <a href="{{ route('seller.view') }}">Seller</a>
+            <a href="{{ route('customer.view') }}">Customer</a>
         </div>
         <div class="signout">
             <span>Not you? <a href="{{ route('logout') }}">Sign out</a></span>

@@ -112,6 +112,22 @@
             left: 30px;
             font-size: 1.5em;
         }
+        .back-button {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 15px;
+            box-shadow: 3px 3px 10px #00000070;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #555;
+            box-shadow: 3px 3px 15px #00000090;
+        }
     </style>
 </head>
 <body>
@@ -121,8 +137,7 @@
             <h1>Bonsai Mart</h1>
             <p>Find the best bonsai. With fast delivery, decorate your space with natural beauty!</p>
             <div class="buttons">
-                <a href="{{ route('register') }}">Register</a>
-                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('add.product') }}">Add products</a>
             </div>
         </div>
         <div class="main-content">
@@ -150,5 +165,6 @@
             <div></div>
         </div>
     </div>
+    <a href="{{ route('user.choice') }}" class="back-button">Back</a>
 </body>
 </html>

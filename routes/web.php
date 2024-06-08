@@ -21,3 +21,15 @@ Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('user-choice', function () {
     return view('flow.userchoice');
 })->name('user.choice');
+
+Route::get('customer-view', function () {
+    return view('flow.customerview');
+})->name('customer.view');
+
+Route::get('seller-view', function () {
+    return view('flow.sellerview');
+})->name('seller.view');
+
+Route::get('add-product', function () {
+    return view('flow.addproduct');
+})->name('add.product');

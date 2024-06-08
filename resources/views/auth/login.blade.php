@@ -45,6 +45,7 @@
         .login-form button {
             width: 100%;
             padding: 10px;
+            margin-top: 10px;
             background-color: #294e2e;
             border: none;
             border-radius: 5px;
@@ -134,5 +135,10 @@
             <div class="register-link">Don't have an account? <a href="{{ route('register') }}">Register</a></div>
         </form>
     </div>
+    <script>
+        @if ($errors->any())
+            alert("Invalid credentials. Please try again.");
+        @endif
+    </script>
 </body>
 </html>
