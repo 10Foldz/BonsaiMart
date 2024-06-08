@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Choice</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bellota:wght@400;700&family=Baskervville&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -33,6 +33,7 @@
         .container h1 {
             margin-bottom: 40px;
             margin-top: 0;
+            font-family: 'Bellota', serif;
         }
         .container .buttons {
             display: flex;
