@@ -24,25 +24,38 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            text-align: right;
+            position: relative;
         }
         .sidebar h1 {
-            font-size: 3em;
-            margin: 0;
+            font-size: 6.5em;
+            margin: 0 70px;
+            color: #fff;
+            font-weight: 400;
+        }
+        .sidebar h1 span {
+            display: block;
+            line-height: 1;
+        }
+        .sidebar h1 span:last-child {
+            margin-left: 20px;
         }
         .sidebar p {
             font-size: 1.2em;
             margin-top: 20px;
-            text-align: center;
+            margin-left: 150px;
+            margin-right: 40px;
+            text-align: left;
         }
         .buttons {
-            margin-top: 40px;
-            display: flex;
-            gap: 10px;
+            margin-top: 20px;
+            margin-left: 180px;
         }
         .buttons a {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
             background-color: #333;
             color: #fff;
             text-decoration: none;
@@ -51,6 +64,26 @@
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .buttons a:hover {
+            background-color: #555;
+            box-shadow: 3px 3px 15px #00000090;
+        }
+        .back-button {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
+        .back-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 15px;
+            box-shadow: 3px 3px 10px #00000070;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button a:hover {
             background-color: #555;
             box-shadow: 3px 3px 15px #00000090;
         }
@@ -70,11 +103,23 @@
         }
         .main-content h2 {
             position: absolute;
-            bottom: 20px;
+            bottom: 50px;
             left: 20px;
             margin: 0;
-            font-size: 2em;
+            font-size: 2.5em;
             font-family: 'Baskervville', serif;
+            font-weight: 400;
+        }
+        .main-content h2::before {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 200px;
+            background-color: #fff;
+            position: absolute;
+            top: -220px; /* Adjust the distance above the text as needed */
+            left: 50%;
+            transform: translateX(-50%);
         }
         .nav {
             position: absolute;
@@ -111,22 +156,7 @@
             top: 30px;
             left: 30px;
             font-size: 1.5em;
-        }
-        .back-button {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 15px;
-            box-shadow: 3px 3px 10px #00000070;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .back-button:hover {
-            background-color: #555;
-            box-shadow: 3px 3px 15px #00000090;
+            z-index: 1;
         }
     </style>
 </head>
@@ -134,10 +164,16 @@
     <div class="logo">BONSAIMART</div>
     <div class="container">
         <div class="sidebar">
-            <h1>Bonsai Mart</h1>
+            <h1>
+                <span>Bonsai</span>
+                <span>Mart</span>
+            </h1>
             <p>Find the best bonsai. With fast delivery, decorate your space with natural beauty!</p>
             <div class="buttons">
-                <a href="{{ route('add.product') }}">Add products</a>
+                <a href="{{ route('add.product') }}">Add product</a>
+            </div>
+            <div class="back-button">
+                <a href="{{ route('user.choice') }}">← Back</a>
             </div>
         </div>
         <div class="main-content">
@@ -165,6 +201,5 @@
             <div></div>
         </div>
     </div>
-    <a href="{{ route('user.choice') }}" class="back-button">Back</a>
 </body>
 </html>

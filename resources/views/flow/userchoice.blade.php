@@ -43,16 +43,19 @@
         .container .buttons a {
             display: inline-block;
             padding: 20px 40px;
+            font-size: 1.5em;
             background-color: #333;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            box-shadow: 3px 3px 10px #00000070;
             text-align: center;
             width: 120px;
         }
         .container .buttons a:hover {
             background-color: #555;
+            box-shadow: 3px 3px 15px #00000090;
         }
         .container .signout {
             margin-top: 20px;

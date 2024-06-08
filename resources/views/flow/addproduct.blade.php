@@ -104,28 +104,23 @@
             border-color: #24481f;
             text-decoration: underline
         }
-       .text-white {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-       .text-white:hover {
-            text-decoration: underline;
-        }
         .back-button {
             position: absolute;
             bottom: 30px;
             left: 30px;
+        }
+        .back-button a {
+            display: inline-block;
             padding: 10px 20px;
+            font-size: 1em;
             background-color: #333;
             color: #fff;
             text-decoration: none;
             border-radius: 15px;
             box-shadow: 3px 3px 10px #00000070;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            font-family: 'Baskervville', serif;
         }
-        .back-button:hover {
+        .back-button a:hover {
             background-color: #555;
             box-shadow: 3px 3px 15px #00000090;
         }
@@ -160,7 +155,9 @@
             </div>
             <button type="submit" class="btn btn-custom">Add product</button>
         </form>
-        <a href="{{ route('seller.view') }}" onclick="history.back()" class="text-white back-button">Back</a>
+        <div class="back-button">
+            <a href="{{ route('seller.view') }}">← Back</a>
+        </div>
     </div>
     <script>
         function previewFile() {

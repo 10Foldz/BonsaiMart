@@ -24,25 +24,39 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            text-align: right;
         }
         .sidebar h1 {
-            font-size: 3em;
-            margin: 0;
+            font-size: 6.5em;
+            margin: 0 70px;
+            color: #fff;
+            font-weight: 400;
+        }
+        .sidebar h1 span {
+            display: block;
+            line-height: 1;
+        }
+        .sidebar h1 span:last-child {
+            margin-left: 20px;
         }
         .sidebar p {
             font-size: 1.2em;
             margin-top: 20px;
-            text-align: center;
+            margin-left: 150px;
+            margin-right: 40px;
+            text-align: left;
         }
         .buttons {
-            margin-top: 40px;
+            margin-top: 20px;
             display: flex;
-            gap: 10px;
+            gap: 20px;
+            margin-left: 135px; /* Move buttons to the right */
         }
         .buttons a {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 15px 25px; /* Increase padding for bigger buttons */
+            font-size: 1.3em; /* Increase font size */
             background-color: #333;
             color: #fff;
             text-decoration: none;
@@ -70,11 +84,23 @@
         }
         .main-content h2 {
             position: absolute;
-            bottom: 20px;
+            bottom: 50px;
             left: 20px;
             margin: 0;
-            font-size: 2em;
+            font-size: 2.5em;
             font-family: 'Baskervville', serif;
+            font-weight: 400;
+        }
+        .main-content h2::before {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 200px;
+            background-color: #fff;
+            position: absolute;
+            top: -220px; /* Adjust the distance above the text as needed */
+            left: 50%;
+            transform: translateX(-50%);
         }
         .nav {
             position: absolute;
@@ -118,7 +144,10 @@
     <div class="logo">BONSAIMART</div>
     <div class="container">
         <div class="sidebar">
-            <h1>Bonsai Mart</h1>
+            <h1>
+                <span>Bonsai</span>
+                <span>Mart</span>
+            </h1>
             <p>Find the best bonsai. With fast delivery, decorate your space with natural beauty!</p>
             <div class="buttons">
                 <a href="{{ route('register') }}">Register</a>
