@@ -1,3 +1,4 @@
+views/flow/userchoice.blade.php
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,12 +58,20 @@
             margin-top: 20px;
             font-size: 1em;
         }
-        .container .signout a {
+        .container .signout form {
+            display: inline;
+        }
+        .container .signout button {
+            background: none;
+            border: none;
             color: #0070E0;
             text-decoration: underline;
+            cursor: pointer;
             transition: color 0.3s ease;
+            font-size: 1em;
+            font-family: 'Baskervville', serif;
         }
-        .container .signout a:hover {
+        .container .signout button:hover {
             color: #bbb;
         }
         .social-logos {
