@@ -29,12 +29,14 @@
         }
         .register-form h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 0px;
+            margin-bottom: 30px;
             color: #6ab04c;
             font-family: 'Bellota', sans-serif;
+            font-size: 2rem;
         }
         .register-form input {
-            width: calc(100% - 20px); /* Adjust width to fit padding */
+            width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
             border: none;
@@ -49,8 +51,9 @@
             color: #fff;
             font-size: 16px;
             font-family: 'Baskervville', sans-serif;
+            transition: background-color 0.3s ease;
         }
-        .register-form button:hover{
+        .register-form button:hover {
             background-color: #3b6a45;
         }
         .register-form .or {
@@ -86,8 +89,12 @@
             border-radius: 5px;
             border: none;
             cursor: pointer;
-            width: 100%; /* Ensure the button is the same width as the form */
+            width: 100%;
             font-family: 'Inter', sans-serif;
+            transition: none;
+        }
+        .register-form .google-button:hover {
+            background-color: #fff;
         }
         .register-form .google-button img {
             width: 20px;
@@ -104,6 +111,7 @@
             color: #0070E0;
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>

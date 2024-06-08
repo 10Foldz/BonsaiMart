@@ -36,7 +36,7 @@
             margin-bottom: 0.5rem;
         }
         .login-form input {
-            width: 100%;
+            width: 90%;
             padding: 0.5rem;
             margin-bottom: 1rem;
             border: 1px solid #444;
@@ -54,6 +54,7 @@
             border: none;
             border-radius: 4px;
             color: #f5f5f5;
+            transition: background-color 0.3s ease;
             cursor: pointer;
         }
         .login-form button:hover {
@@ -75,7 +76,7 @@
             text-decoration: underline;
         }
         .info-section {
-            background-image: url('/images/background.jpg'); /* Ensure this path is correct */
+            background-image: url('/images/background.jpg');
             background-size: cover;
             background-position: center;
             width: 70%;
