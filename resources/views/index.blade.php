@@ -111,10 +111,18 @@
             left: 20px;
             font-size: 1.5em;
         }
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .logo a:hover {
+            color: #bbb;
+        }
     </style>
 </head>
 <body>
-    <div class="logo">BONSAIMART</div>
+    <div class="logo"><a href="#">BONSAIMART</a></div>
     <div class="container">
         <div class="sidebar">
             <h1>Bonsai Mart</h1>
