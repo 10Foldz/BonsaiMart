@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bonsai Mart</title>
     <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Baskervville', serif;
@@ -195,11 +196,9 @@
         <a href="#">About</a>
         <a href="#">Market</a>
         <a href="#">Contact</a>
-        <div class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <a href="{{ route('cart.page') }}" class="fs-6">
+            <i class="fa-solid fa-bag-shopping icon-nav"></i>
+        </a>
     </div>
 </body>
 </html>

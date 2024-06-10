@@ -133,7 +133,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Rp</span>
                         </div>
-                        <input type="number" class="form-control" id="price" name="price" required>
+                        <input type="number" class="form-control" id="price" name="price" step="0.01" required>
                     </div>
                 </div>
                 <div class="form-group">

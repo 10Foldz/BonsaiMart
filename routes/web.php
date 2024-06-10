@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('index');
@@ -45,3 +46,12 @@ Route::get('product-page', [SellerController::class, 'productPage'])->name('prod
 Route::get('about-page', function () {
     return view('about');
 })->name('about.page');
+
+Route::get('cart-page', function () {
+    return view('flow.cartpage');
+})->name('cart.page');
+
+Route::post('add-to-cart/{productId}', [CartController::class, 'addToCart'])->name('add.to.cart');
+Route::get('cart-page', [CartController::class, 'cartPage'])->name('cart.page');
+Route::put('update-cart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
+Route::delete('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove.from.cart');

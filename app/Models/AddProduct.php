@@ -15,4 +15,10 @@ class AddProduct extends Model
         'product_description',
         'product_image',
     ];
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
 }

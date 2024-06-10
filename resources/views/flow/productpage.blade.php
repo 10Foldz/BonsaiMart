@@ -133,11 +133,9 @@
         <a href="#">About</a>
         <a href="#">Market</a>
         <a href="#">Contact</a>
-        <div class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <a href="{{ route('cart.page') }}" class="fs-6">
+            <i class="fa-solid fa-bag-shopping icon-nav"></i>
+        </a>
     </div>
     <hr>
     <div class="content-container">
@@ -156,9 +154,12 @@
                         </div>
                         <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                             <p class="m-0">Rp. {{ $product->price }}</p>
-                            <button class="btn btn-outline-primary" style="font-size:15px">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
+                            <form action="{{ route('add.to.cart', $product->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-primary" style="font-size:15px">
+                                    <i class="fa-solid fa-cart-shopping"></i> +
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
