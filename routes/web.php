@@ -33,3 +33,7 @@ Route::get('seller-view', function () {
 Route::get('add-product', function () {
     return view('flow.addproduct');
 })->name('add.product');
+
+Route::get('product-page', function () {
+    return view('flow.productpage');
+})->name('product.page');
