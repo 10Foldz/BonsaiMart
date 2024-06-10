@@ -34,4 +34,11 @@ class SellerController extends Controller
 
         return redirect()->route('add.product')->with('success', 'Product added successfully!');
     }
+
+    //function to fetch products in product page
+    public function productPage()
+    {
+        $products = AddProduct::all();
+        return view('flow.productpage', compact('products'));
+    }
 }

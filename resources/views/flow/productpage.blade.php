@@ -11,11 +11,15 @@
             font-family: 'Baskervville', serif;
             background: url('/images/background2.jpg') no-repeat center center fixed;
             background-size: cover;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent body from scrolling */
         }
         .back-button {
-            position: absolute;
+            position: fixed;
             bottom: 30px;
             left: 30px;
+            z-index: 2;
         }
         .back-button a {
             display: inline-block;
@@ -33,12 +37,13 @@
             box-shadow: 3px 3px 15px #00000090;
         }
         .nav {
-            position: absolute;
+            position: fixed;
             top: 30px;
             right: 30px;
             display: flex;
             gap: 80px;
             align-items: center;
+            z-index: 2;
         }
         .nav a {
             color: #fff;
@@ -63,11 +68,11 @@
             background-color: #fff;
         }
         .logo {
-            position: absolute;
+            position: fixed;
             top: 30px;
             left: 30px;
             font-size: 1.5em;
-            z-index: 1;
+            z-index: 2;
             color: #fff;
         }
         .header {
@@ -82,12 +87,29 @@
             height: 1px;
             border: none;
         }
+        .empty-products-message {
+            color: #fff;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+        .content-container {
+            position: absolute;
+            top: 100px; /* Adjust based on your fixed header height */
+            bottom: 0px; /* Adjust based on your fixed footer height */
+            left: 0;
+            right: 0;
+            overflow-y: auto;
+            padding: 20px;
+        }
         .content {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
-            margin-top: 50px; /* Increased margin-top to move content further down */
+            margin-top: 50px;
         }
         .card {
             width: 260px;
@@ -118,70 +140,33 @@
         </div>
     </div>
     <hr>
-    <div class="content">
-        <div class="card">
-            <div class="card-header m-auto">
-                <img src="assets/bonsai3.jpeg" alt="Bonsai Bougenville" style="width: 225px; height:225px;">
-            </div>
-            <div class="card-body">
-                <p class="m-0 text-justify" style="font-size:25px;">Bonsai Bougenville</p>
-                <p class="m-0" style="color: #B6B4B4; font-size: 13px;">Tanaman bougenville memiliki daya tarik pada bunga serta daunnya. Selain itu bougenville memiliki total 14 spesies dan delapan di antaranya tumbuh dan mudah ditemui di Indonesia.</p>
-            </div>
-            <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0">Rp. 150.000</p>
-                <button class="btn btn-outline-primary" style="font-size:15px">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header m-auto">
-                <img src="assets/bonsai3.jpeg" alt="Bonsai Adenium" style="width: 225px; height:225px;">
-            </div>
-            <div class="card-body">
-                <p class="m-0 text-justify" style=" font-size:25px;">Bonsai Adenium</p>
-                <p class="m-0" style="color: #B6B4B4; font-size: 13px;">Kamboja Jepang atau adenium merupakan salah satu tanaman yang sangat umum dijadikan sebagai bonsai. Hal ini karena adenium memiliki kontur batang yang besar di bawahnya dan batang yang cukup kecil di bagian atasnya.</p>
-            </div>
-            <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0">Rp. 150.000</p>
-                <button class="btn btn-outline-primary" style="font-size:15px">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header m-auto">
-                <img src="assets/bonsai3.jpeg" alt="Bonsai Bougenville" style="width: 225px; height:225px;">
-            </div>
-            <div class="card-body">
-                <p class="m-0 text-justify" style="font-size:25px;">Bonsai Bougenville</p>
-                <p class="m-0" style="color: #B6B4B4; font-size: 13px">Tanaman bougenville memiliki daya tarik pada bunga serta daunnya. Selain itu bougenville memiliki total 14 spesies dan delapan di antaranya tumbuh dan mudah ditemui di Indonesia.</p>
-            </div>
-            <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0">Rp. 150.000</p>
-                <button class="btn btn-outline-primary" style="font-size:15px">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header m-auto">
-                <img src="assets/bonsai3.jpeg" alt="Bonsai Bougenville" style="width: 225px; height:225px;">
-            </div>
-            <div class="card-body">
-                <p class="m-0 text-justify" style="font-size:25px;">Bonsai Bougenville</p>
-                <p class="m-0" style="color: #B6B4B4; font-size: 13px">Tanaman bougenville memiliki daya tarik pada bunga serta daunnya. Selain itu bougenville memiliki total 14 spesies dan delapan di antaranya tumbuh dan mudah ditemui di Indonesia.</p>
-            </div>
-            <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0">Rp. 150.000</p>
-                <button class="btn btn-outline-primary" style="font-size:15px">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-            </div>
+    <div class="content-container">
+        <div class="content">
+            @if ($products->isEmpty())
+                <h2 class="empty-products-message">No products listed yet</h2>
+            @else
+                @foreach ($products as $product)
+                    <div class="card">
+                        <div class="card-header m-auto">
+                            <img src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->product_name }}" style="width: 225px; height:225px;">
+                        </div>
+                        <div class="card-body">
+                            <p class="m-0 text-justify" style="font-size:25px;">{{ $product->product_name }}</p>
+                            <p class="m-0" style="color: #B6B4B4; font-size: 13px;">{{ $product->product_description }}</p>
+                        </div>
+                        <div class="card-footer d-flex flex-row justify-content-between align-items-center">
+                            <p class="m-0">Rp. {{ $product->price }}</p>
+                            <button class="btn btn-outline-primary" style="font-size:15px">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
     <div class="back-button">
-        <a href="{{ route('seller.view') }}">← Back</a>
+        <a href="{{ route('customer.view') }}">← Back</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
