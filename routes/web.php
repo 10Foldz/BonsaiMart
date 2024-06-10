@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\SellerController;
 
 Route::get('/', function () {
     return view('index');
@@ -37,3 +38,5 @@ Route::get('add-product', function () {
 Route::get('product-page', function () {
     return view('flow.productpage');
 })->name('product.page');
+
+Route::post('add-product', [SellerController::class, 'addProduct'])->name('add.product');
