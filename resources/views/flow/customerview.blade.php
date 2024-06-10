@@ -170,7 +170,7 @@
             </h1>
             <p>Find the best bonsai. With fast delivery, decorate your space with natural beauty!</p>
             <div class="buttons">
-                <a href="{{ route('product.page') }}">Check our products</a>
+                <a href="{{ route('product.page') }}">See Marketplace</a>
             </div>
             <div class="back-button">
                 <a href="{{ route('user.choice') }}">← Back</a>
@@ -193,7 +193,7 @@
     </div>
     <div class="nav">
         <a href="#">About</a>
-        <a href="#">Product</a>
+        <a href="#">Market</a>
         <a href="#">Contact</a>
         <div class="hamburger">
             <div></div>

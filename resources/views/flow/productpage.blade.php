@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
+            font-family: 'Baskervville', serif;
             background: url('/images/background2.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
         }
         .back-button {
             position: absolute;
@@ -72,89 +70,118 @@
             z-index: 1;
             color: #fff;
         }
+        .header {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+        hr {
+            margin-top: 100px;
+            background-color: white;
+            height: 1px;
+            border: none;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 50px; /* Increased margin-top to move content further down */
+        }
+        .card {
+            width: 260px;
+            background-color: #242428bd;
+            border: none;
+        }
+        .card-header img {
+            border-radius: 5px;
+        }
+        .card-body p, .card-footer p {
+            color: white;
+        }
+        .card-footer p {
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="logo">BONSAIMART</div>
-    <h4 class="text-center mt-md-5 mb-md-2" style="color: white; font-size: 35px">Our Product</h4>
-    <hr style="color: white;">
-    <div class="content mt-5 d-flex flex-lg-wrap gap-4">
-        <div class="card" style="width: 260px; background-color: #242428bd;">
-            <div class="card-header m-auto" style="border-radius:5px;">
+    <div class="nav">
+        <a href="#">About</a>
+        <a href="#">Market</a>
+        <a href="#">Contact</a>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="card">
+            <div class="card-header m-auto">
                 <img src="assets/bonsai3.jpeg" alt="Bonsai Bougenville" style="width: 225px; height:225px;">
             </div>
             <div class="card-body">
-                <p class="m-0 text-justify" style="font-size:25px; color: white">Bonsai Bougenville</p>
+                <p class="m-0 text-justify" style="font-size:25px;">Bonsai Bougenville</p>
                 <p class="m-0" style="color: #B6B4B4; font-size: 13px;">Tanaman bougenville memiliki daya tarik pada bunga serta daunnya. Selain itu bougenville memiliki total 14 spesies dan delapan di antaranya tumbuh dan mudah ditemui di Indonesia.</p>
             </div>
             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0" style="font-size: 20px; color: white;">Rp. 150.000</p>
+                <p class="m-0">Rp. 150.000</p>
                 <button class="btn btn-outline-primary" style="font-size:15px">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
             </div>
         </div>
-
-        <div class="card" style="width: 260px; background-color: #242428bd;">
-            <div class="card-header m-auto" style="border-radius:5px;">
+        <div class="card">
+            <div class="card-header m-auto">
                 <img src="assets/bonsai3.jpeg" alt="Bonsai Adenium" style="width: 225px; height:225px;">
             </div>
             <div class="card-body">
-                <p class="m-0 text-justify" style=" font-size:25px; color: white">Bonsai Adenium</p>
+                <p class="m-0 text-justify" style=" font-size:25px;">Bonsai Adenium</p>
                 <p class="m-0" style="color: #B6B4B4; font-size: 13px;">Kamboja Jepang atau adenium merupakan salah satu tanaman yang sangat umum dijadikan sebagai bonsai. Hal ini karena adenium memiliki kontur batang yang besar di bawahnya dan batang yang cukup kecil di bagian atasnya.</p>
             </div>
             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0" style="font-size: 20px; color: white">Rp. 150.000</p>
+                <p class="m-0">Rp. 150.000</p>
                 <button class="btn btn-outline-primary" style="font-size:15px">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
             </div>
         </div>
-
-        <div class="card" style="width: 260px; background-color: #242428bd;">
-            <div class="card-header m-auto" style="border-radius:5px;">
+        <div class="card">
+            <div class="card-header m-auto">
                 <img src="assets/bonsai3.jpeg" alt="Bonsai Bougenville" style="width: 225px; height:225px;">
             </div>
             <div class="card-body">
-                <p class="m-0 text-justify" style=" font-size:25px; color: white">Bonsai Bougenville</p>
+                <p class="m-0 text-justify" style="font-size:25px;">Bonsai Bougenville</p>
                 <p class="m-0" style="color: #B6B4B4; font-size: 13px">Tanaman bougenville memiliki daya tarik pada bunga serta daunnya. Selain itu bougenville memiliki total 14 spesies dan delapan di antaranya tumbuh dan mudah ditemui di Indonesia.</p>
             </div>
             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0" style="font-size: 20px; color: white">Rp. 150.000</p>
+                <p class="m-0">Rp. 150.000</p>
                 <button class="btn btn-outline-primary" style="font-size:15px">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
             </div>
         </div>
-
-        <div class="card" style="width: 260px; background-color: #242428bd;">
-            <div class="card-header m-auto" style="border-radius:5px;">
+        <div class="card">
+            <div class="card-header m-auto">
                 <img src="assets/bonsai3.jpeg" alt="Bonsai Bougenville" style="width: 225px; height:225px;">
             </div>
             <div class="card-body">
-                <p class="m-0 text-justify" style="font-size:25px; color: white">Bonsai Bougenville</p>
+                <p class="m-0 text-justify" style="font-size:25px;">Bonsai Bougenville</p>
                 <p class="m-0" style="color: #B6B4B4; font-size: 13px">Tanaman bougenville memiliki daya tarik pada bunga serta daunnya. Selain itu bougenville memiliki total 14 spesies dan delapan di antaranya tumbuh dan mudah ditemui di Indonesia.</p>
             </div>
             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                <p class="m-0" style="font-size: 20px; color: white">Rp. 150.000</p>
+                <p class="m-0">Rp. 150.000</p>
                 <button class="btn btn-outline-primary" style="font-size:15px">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
             </div>
         </div>
-        <div class="back-button">
-            <a href="{{ route('seller.view') }}">← Back</a>
-        </div>
-        <div class="nav">
-            <a href="#">About</a>
-            <a href="#">Product</a>
-            <a href="#">Contact</a>
-            <div class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
+    </div>
+    <div class="back-button">
+        <a href="{{ route('seller.view') }}">← Back</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
