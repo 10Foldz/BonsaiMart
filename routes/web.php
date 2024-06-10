@@ -40,5 +40,8 @@ Route::get('product-page', function () {
 })->name('product.page');
 
 Route::post('add-product', [SellerController::class, 'addProduct'])->name('add.product');
-
 Route::get('product-page', [SellerController::class, 'productPage'])->name('product.page');
+
+Route::get('about-page', function () {
+    return view('about');
+})->name('about.page');
