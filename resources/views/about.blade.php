@@ -3,69 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+    <title>About Us - Bonsai Mart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Krona+One&display=swap" rel="stylesheet">
     <style>
         body {
-            color: white;
-            background: url('/images/background3.jpg') center center fixed;
-            font-family: 'Baskervville', sans-serif;
-            overflow-x: hidden;
+            font-family: 'Baskervville', serif;
             margin: 0;
+            padding: 0;
+            background-color: #1d1d1d;
+            color: #fff;
+            overflow: hidden; /* Prevents scrolling */
         }
-        .back-button {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
+        .container {
+            padding: 0 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            box-sizing: border-box;
         }
-        .back-button a {
-            display: inline-block;
-            padding: 10px 20px;
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .about-content img {
+            border-radius: 10px;
+            width: 450px;
+            height: 450px;
+            object-fit: cover;
+        }
+        .text-content {
+            max-width: 500px;
+        }
+        .text-content h1 {
+            font-family: 'Krona One', sans-serif;
+            font-size: 5.3em;
+            margin: 0;
+            font-weight: 400;
+        }
+        .text-content p {
             font-size: 1em;
-            background-color: #333;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .nav {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+        .nav a {
             color: #fff;
             text-decoration: none;
-            border-radius: 15px;
-            box-shadow: 3px 3px 10px #00000070;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
         }
-        .back-button a:hover {
-            background-color: #555;
-            box-shadow: 3px 3px 15px #00000090;
+        .nav a:hover {
+            color: #bbb;
         }
-        .title {
+        .hamburger {
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+        }
+        .logo {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Baskervville', serif;
-            font-size: 5em;
-            text-align: center;
+            top: 30px;
+            left: 30px;
+            font-size: 1.5em;
         }
-        .description {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50%;
-            font-size: 1.2em;
-            text-align: center;
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .social-icons img {
+            width: 30px;
+            height: 30px;
         }
     </style>
 </head>
 <body>
-
-    <div class="back-button">
-        <a href="{{ route('seller.view') }}">← Back</a>
+    <div class="logo">BONSAIMART</div>
+    <div class="nav">
+        <a href="{{ route('about.page') }}">About</a>
+        <a href="#">Product</a>
+        <a href="#">Contact</a>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-
-    <div class="title">
-        <h1>Bonsai<br>Mart</h1>
+    <div class="container">
+        <div class="about-content">
+            <img src="{{ asset('images/bonsai-about.jpg') }}" alt="Bonsai Image">
+            <div class="text-content">
+                <h1>ABOUT US</h1>
+                <p>BonsaiMart is the ultimate digital destination for bonsai lovers, both beginners and experts. The website offers a complete product catalog, ranging from ready-to-display bonsai seedlings and trees to high-quality tools and accessories.</p>
+                <p>With an active community and responsive customer support, BonsaiOnline is the ideal place to learn, share and fulfill all your bonsai needs.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="/images/x.png" alt="Twitter X Logo"></a>
+                    <a href="#"><img src="/images/facebook.png" alt="Facebook Logo"></a>
+                    <a href="#"><img src="/images/instagram.png" alt="Instagram Logo"></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="description">
-        <p>BonsaiMart is the ultimate digital destination for bonsai lovers, both beginners and experts. The website offers a complete product catalog, ranging from ready-to-display bonsai seedlings and trees to high-quality tools and accessories. With an active community and responsive customer support, BonsaiOnline is the ideal place to learn, share and fulfill all your bonsai needs.</p>
-    </div>
-
 </body>
 </html>
