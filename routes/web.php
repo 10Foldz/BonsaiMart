@@ -29,11 +29,11 @@ Route::get('customer-view', function () {
 })->name('customer.view');
 
 Route::get('seller-view', function () {
-    return view('flow.sellerview');
+    return view('sellerpermit.sellerview');
 })->name('seller.view');
 
 Route::get('add-product', function () {
-    return view('flow.addproduct');
+    return view('sellerpermit.addproduct');
 })->name('add.product');
 
 Route::get('product-page', function () {
@@ -55,3 +55,7 @@ Route::post('add-to-cart/{productId}', [CartController::class, 'addToCart'])->na
 Route::get('cart-page', [CartController::class, 'cartPage'])->name('cart.page');
 Route::put('update-cart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
 Route::delete('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove.from.cart');
+
+Route::get('seller-product', function () {
+    return view('sellerpermit.sellerproduct');
+})->name('seller.product');

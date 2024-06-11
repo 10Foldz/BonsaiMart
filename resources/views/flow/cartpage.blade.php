@@ -88,8 +88,8 @@
             bottom: 30px;
             right: 30px;
             display: flex;
-            align-items: center;
-            gap: 20px;
+            flex-direction: column;
+            align-items: flex-end;
             padding: 10px 20px;
             background-color: #333;
             color: white;
@@ -98,6 +98,7 @@
         }
         .checkout-container .total-price {
             font-size: 1.2em;
+            margin-bottom: 10px;
         }
         .checkout-container .btn-checkout {
             background-color: #28a745;
