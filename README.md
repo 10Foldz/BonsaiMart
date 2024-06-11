@@ -1,3 +1,3 @@
 ## About BonsaiMart
 
-BonsaiMart is a project for certain subject.
+BonsaiMart is a group-project for certain subject.
