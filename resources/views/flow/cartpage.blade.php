@@ -116,7 +116,7 @@
 </head>
 <body>
     <div class="back-button">
-        <a href="{{ route('product.page') }}">← Back</a>
+        <a href="javascript:history.back()">← Back</a>
     </div>
     <div class="container content-container">
         <h1>Your Cart</h1>

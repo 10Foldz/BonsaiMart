@@ -130,8 +130,8 @@
 <body>
     <div class="logo">BONSAIMART</div>
     <div class="nav">
-        <a href="#">About</a>
-        <a href="#">Market</a>
+        <a href="{{ route('about.page') }}">About</a>
+        <a href="{{ route('product.page') }}">Market</a>
         <a href="#">Contact</a>
         <a href="{{ route('cart.page') }}" class="fs-6">
             <i class="fa-solid fa-bag-shopping icon-nav"></i>
@@ -167,7 +167,7 @@
         </div>
     </div>
     <div class="back-button">
-        <a href="{{ route('customer.view') }}">← Back</a>
+        <a href="javascript:history.back()">← Back</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

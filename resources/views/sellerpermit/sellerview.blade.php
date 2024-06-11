@@ -219,8 +219,8 @@
         </div>
     </div>
     <div class="nav">
-        <a href="#">About</a>
-        <a href="#">Market</a>
+        <a href="{{ route('about.page') }}">About</a>
+        <a href="{{ route('product.page') }}">Market</a>
         <a href="#">Contact</a>
         <div class="hamburger" onclick="toggleDropdown()">
             <div></div>

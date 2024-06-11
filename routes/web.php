@@ -56,6 +56,7 @@ Route::get('cart-page', [CartController::class, 'cartPage'])->name('cart.page');
 Route::put('update-cart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
 Route::delete('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove.from.cart');
 
-Route::get('seller-product', function () {
-    return view('sellerpermit.sellerproduct');
-})->name('seller.product');
+Route::get('seller-product', [SellerController::class, 'sellerProductPage'])->name('seller.product');
+Route::delete('delete-product/{id}', [SellerController::class, 'deleteProduct'])->name('delete.product');
+Route::get('edit-product/{id}', [SellerController::class, 'editProduct'])->name('edit.product');
+Route::put('update-product/{id}', [SellerController::class, 'updateProduct'])->name('update.product');

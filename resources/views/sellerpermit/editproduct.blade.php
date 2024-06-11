@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Products</title>
+    <title>Edit Product</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         body {
             color: white;
             background: url('/images/background3.jpg') no-repeat center center fixed;
+            font-family: 'Arial', sans-serif;
             overflow-x: hidden;
             margin: 0;
             font-family: 'Baskervville', serif;
@@ -141,11 +142,12 @@
             margin-top: 50px;
         }
         .card {
-            width: 260px;
+            width: 350px;
             background-color: #242428bd;
             border: none;
         }
         .card-header img {
+            margin-top: 10px;
             border-radius: 5px;
         }
         .card-body p, .card-footer p {
@@ -154,26 +156,13 @@
         .card-footer p {
             font-size: 20px;
         }
-        .card-footer .btn-group {
-            display: flex;
-            gap: 5px;
-        }
     </style>
 </head>
 <body>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
     <div class="add-product-container">
         <div class="logo">BONSAIMART</div>
         <div class="back-button">
-            <a href="{{ route('seller.view') }}">← Back</a>
+            <a href="{{ route('seller.product') }}">← Back</a>
         </div>
         <div class="nav">
             <a href="{{ route('about.page') }}">About</a>
@@ -187,72 +176,47 @@
         </div>
         <div class="content-container">
             <div class="content">
-                @if ($products->isEmpty())
-                    <h2 class="empty-products-message">No products listed yet</h2>
-                @else
-                    @foreach ($products as $product)
-                        <div class="card">
-                            <div class="card-header m-auto">
-                                <img src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->product_name }}" style="width: 225px; height:225px;">
+                <div class="card">
+                    <div class="card-header m-auto">
+                        <img src="{{ asset('images/' . $product->product_image) }}" alt="{{ $product->product_name }}" style="width: 225px; height:225px;">
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('update.product', $product->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <label for="product_name" style="color:white;">Product Name</label>
+                                <input type="text" name="product_name" id="product_name" class="form-control" value="{{ $product->product_name }}" required>
                             </div>
-                            <div class="card-body">
-                                <p class="m-0 text-justify" style="font-size:25px;">{{ $product->product_name }}</p>
-                                <p class="m-0" style="color: #B6B4B4; font-size: 13px;">{{ $product->product_description }}</p>
+                            <div class="form-group">
+                                <label for="product_description" style="color:white;">Product Description</label>
+                                <textarea name="product_description" id="product_description" class="form-control" required>{{ $product->product_description }}</textarea>
                             </div>
-                            <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                                <p class="m-0">Rp.</p>
-                                <p class="m-0">{{ $product->price }}</p>
-                                <div class="btn-group">
-                                    <a href="{{ route('edit.product', $product->id) }}" class="btn btn-outline-warning" style="font-size:15px">
-                                        <i class="fa-solid fa-edit"></i> Edit
-                                    </a>
-                                    <form action="{{ route('delete.product', $product->id) }}" method="POST" style="display:inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger" style="font-size:15px">
-                                            <i class="fa-solid fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                </div>
+                            <div class="form-group">
+                                <label for="price" style="color:white;">Price</label>
+                                <input type="number" name="price" id="price" class="form-control" value="{{ $product->price }}" required>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
+                            <div class="form-group">
+                                <label for="product_image" style="color:white;">Product Image</label>
+                                <input type="file" name="product_image" id="product_image" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-custom">Update Product</button>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <p>Current Price: Rp.{{ $product->price }}</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="dropdown" id="dropdown">
-            <a href="#">My products</a>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="{{ route('seller.product') }}">My products</a>
         </div>
     </div>
     <script>
-        function previewFile() {
-            const preview = document.getElementById('preview-image');
-            const file    = document.querySelector('input[type=file]').files[0];
-            const reader  = new FileReader();
-
-            reader.addEventListener("load", function () {
-                preview.src = reader.result;
-                preview.style.display = 'block';
-            }, false);
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
-
         function toggleDropdown() {
-            document.getElementById("dropdown").classList.toggle("show");
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.hamburger') && !event.target.matches('.hamburger div')) {
-                var dropdowns = document.getElementsByClassName("dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('show');
         }
     </script>
 </body>

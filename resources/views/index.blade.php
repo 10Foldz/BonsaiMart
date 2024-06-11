@@ -171,7 +171,7 @@
     </div>
     <div class="nav">
         <a href="{{ route('about.page') }}">About</a>
-        <a href="#">Market</a>
+        <a href="{{ route('product.page') }}">Market</a>
         <a href="#">Contact</a>
         <div class="hamburger">
             <div></div>
