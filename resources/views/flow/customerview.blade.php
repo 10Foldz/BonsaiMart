@@ -231,7 +231,6 @@
     <div class="nav">
         <a href="{{ route('about.page') }}">About</a>
         <a href="{{ route('product.page') }}">Market</a>
-        <a href="#">Contact</a>
         <a href="{{ route('cart.page') }}" class="fs-6">
             <i class="fa-solid fa-bag-shopping icon-nav"></i>
         </a>
