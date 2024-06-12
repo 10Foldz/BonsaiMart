@@ -188,6 +188,7 @@
             <a href="{{ route('about.page') }}">About</a>
             <a href="{{ route('product.page') }}">Market</a>
             <a href="#">Contact</a>
+            <a href="{{ route('add.product') }}" style="font-size: 26px;">+</a>
             <div class="hamburger" onclick="toggleDropdown()">
                 <div></div>
                 <div></div>
