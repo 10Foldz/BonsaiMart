@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('add_product', function (Blueprint $table) {
+        Schema::create('add_products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
             $table->bigInteger('price');
@@ -20,6 +20,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('add_product');
+        Schema::dropIfExists('add_products');
     }
 };

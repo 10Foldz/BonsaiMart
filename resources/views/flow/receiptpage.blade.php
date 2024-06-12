@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Receipt</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -119,58 +119,25 @@
             width: 100%;
             max-width: 1200px;
         }
-        .cart-items-container {
-            width: 40%;
-            height: 400px; /* Adjust height as needed */
-            overflow-y: auto; /* Make the container scrollable */
-        }
-        .cart-items {
+        .receipt-items {
             background-color: #242428bd;
             padding: 15px;
-            margin-bottom: 20px;
             border-radius: 10px;
-            display: flex;
-            flex-direction: column; /* Change from horizontal to vertical */
             width: 100%;
-            height: auto;
         }
-        .cart-item {
+        .receipt-item {
             display: flex;
-            flex-direction: row; /* Keep the inner items horizontal */
+            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px; /* Add margin between items */
-            padding: 15px;
-            border-radius: 10px;
-            background-color: #242428bd;
-        }
-        .cart-item img {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-        }
-        .cart-item .product-info {
-            flex-grow: 1;
-            padding-left: 20px;
-        }
-        .cart-item .product-info p {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-        }
-        .total-price {
             padding: 10px;
-            background-color: #242428bd;
-            border-radius: 10px;
-            margin-top: 20px;
+            border-bottom: 1px solid white;
+        }
+        .receipt-item:last-child {
+            border-bottom: none;
+        }
+        .total {
             text-align: right;
-        }
-        .checkout-form {
-            background-color: #242428bd;
-            padding: 20px;
-            border-radius: 10px;
-            width: 60%;
-        }
-        .checkout-form label {
-            color: white;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -186,59 +153,24 @@
     </div>
     <hr>
     <div class="content-container">
-        <h1>Checkout</h1>
+        <h1>Your Receipt</h1>
         <div class="content">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if ($cartItems->isEmpty())
-                <p>Your cart is empty</p>
-            @else
-                <div class="cart-items-container">
-                    <div class="cart-items">
-                        @foreach ($cartItems as $item)
-                            <div class="cart-item d-flex align-items-center">
-                                <img src="{{ asset('images/'. $item->product->product_image) }}" alt="{{ $item->product->product_name }}">
-                                <div class="product-info">
-                                    <p>{{ $item->product->product_name }}</p>
-                                    <p>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</p>
-                                    <p>Quantity: {{ $item->quantity }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="total-price">
-                            <p>Total Quantity: {{ $totalQuantity }}</p>
-                            <p>Total Price: Rp. {{ number_format($totalPrice, 0, ',', '.') }}</p>
+            @if ($order)
+                <div class="receipt-items">
+                    @foreach ($orderItems as $item)
+                        <div class="receipt-item">
+                            <div>{{ $item->product->product_name }}</div>
+                            <div>Rp. {{ number_format($item->price, 0, ',', '.') }}</div>
+                            <div>Quantity: {{ $item->quantity }}</div>
                         </div>
+                    @endforeach
+                    <div class="total">
+                        <p>Total Quantity: {{ $totalQuantity }}</p>
+                        <p>Total Price: Rp. {{ number_format($totalPrice, 0, ',', '.') }}</p>
                     </div>
                 </div>
-                <form class="checkout-form" action="{{ route('process.checkout') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone_number">Phone Number:</label>
-                        <input type="text" class="form-control" id="phone_number" name="phone_number" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expedition_shipping">Expedition Shipping:</label>
-                        <select class="form-control" id="expedition_shipping" name="expedition_shipping" required>
-                            <option value="JNE Express">JNE Express</option>
-                            <option value="J&T Express">J&T Express</option>
-                            <option value="SiCepat">SiCepat</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Place Order</button>
-                    <a href="{{ route('receipt.page') }}" class="btn btn-secondary">View Receipt</a>
-                </form>
+            @else
+                <p>No recent order found.</p>
             @endif
         </div>
     </div>

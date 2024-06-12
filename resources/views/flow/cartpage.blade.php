@@ -6,14 +6,13 @@
     <title>Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             color: white;
             background: url('/images/background3.jpg') center center fixed;
-            font-family: 'Baskervville', serif;
-            overflow: hidden;
+            overflow-x: hidden;
             margin: 0;
+            font-family: 'Baskervville', serif;
         }
         .back-button {
             position: fixed;
@@ -52,6 +51,7 @@
             gap: 80px;
             align-items: center;
             z-index: 2;
+            font-family: 'Baskervville', serif;
         }
         .nav a {
             color: #fff;
@@ -96,22 +96,13 @@
             border: none;
         }
         .content-container {
-            margin-top: 20px;
+            position: absolute;
             top: 100px; /* Adjust based on your fixed header height */
             bottom: 0px; /* Adjust based on your fixed footer height */
             left: 0;
             right: 0;
             overflow-y: auto;
-            z-index: 1;
-            height: calc(100vh - 150px);
-        }
-        .content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 50px;
-            height: 100%;
+            padding: 20px;
         }
         .cart-item {
             background-color: #242428bd;
@@ -132,7 +123,6 @@
         }
         .cart-item .product-info p {
             margin: 0;
-            font-family: 'Arial', sans-serif;
         }
         .cart-item .quantity {
             display: flex;
@@ -156,6 +146,7 @@
             text-align: center;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-family: 'Arial', sans-serif;
         }
         .cart-item .delete-button {
             margin-left: 5px;
@@ -172,12 +163,10 @@
             color: white;
             border-radius: 15px;
             box-shadow: 3px 3px 10px #00000070;
-            z-index: 2;
         }
         .checkout-container .total-price {
             font-size: 1.2em;
             margin-bottom: 10px;
-            font-family: 'Arial', sans-serif;
         }
         .checkout-container .btn-checkout {
             background-color: #28a745;
@@ -191,55 +180,58 @@
         .checkout-container .btn-checkout:hover {
             background-color: #218838;
         }
+        .item-price, .total-price {
+            font-family: 'Arial', sans-serif; /* Apply new font */
+        }
     </style>
 </head>
 <body>
+    <div class="back-button">
+        <a href="{{ route('product.page') }}">← Back</a>
+    </div>
     <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
     <div class="nav">
         <a href="{{ route('about.page') }}">About</a>
         <a href="{{ route('product.page') }}">Market</a>
         <a href="#">Contact</a>
-        <a href="{{ route('cart.page') }}" class="fs-6">
-            <i class="fa-solid fa-bag-shopping icon-nav"></i>
-        </a>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
     <hr>
-    <div class="back-button">
-        <a href="javascript:history.back()">← Back</a>
-    </div>
     <div class="container content-container">
-        <div class="content">
-            <h1>Your Cart</h1>
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if ($cartItems->isEmpty())
-                <p>Your cart is empty</p>
-            @else
-                @foreach ($cartItems as $item)
-                    <div class="cart-item d-flex align-items-center">
-                        <img src="{{ asset('images/' . $item->product->product_image) }}" alt="{{ $item->product->product_name }}">
-                        <div class="product-info">
-                            <p><strong>{{ $item->product->product_name }}</strong></p>
-                            <p>{{ $item->product->product_description }}</p>
-                            <p>Rp. <span class="item-price" data-price="{{ $item->product->price }}">{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span></p>
-                        </div>
-                        <div class="quantity">
-                            <button class="btn-decrease" data-id="{{ $item->id }}">-</button>
-                            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" data-id="{{ $item->id }}" readonly>
-                            <button class="btn-increase" data-id="{{ $item->id }}">+</button>
-                        </div>
-                        <form action="{{ route('remove.from.cart', $item->id) }}" method="POST" class="delete-button">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
+        <h1>Your Cart</h1>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if ($cartItems->isEmpty())
+            <p>Your cart is empty</p>
+        @else
+            @foreach ($cartItems as $item)
+                <div class="cart-item d-flex align-items-center">
+                    <img src="{{ asset('images/' . $item->product->product_image) }}" alt="{{ $item->product->product_name }}">
+                    <div class="product-info">
+                        <p><strong>{{ $item->product->product_name }}</strong></p>
+                        <p>{{ $item->product->product_description }}</p>
+                        <p>Rp. <span class="item-price" data-price="{{ $item->product->price }}">{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span></p>
                     </div>
-                @endforeach
-            @endif
-        </div>
+                    <div class="quantity">
+                        <button class="btn-decrease" data-id="{{ $item->id }}">-</button>
+                        <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" data-id="{{ $item->id }}" readonly>
+                        <button class="btn-increase" data-id="{{ $item->id }}">+</button>
+                    </div>
+                    <form action="{{ route('remove.from.cart', $item->id) }}" method="POST" class="delete-button">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            @endforeach
+        @endif
     </div>
 
     <div class="checkout-container">

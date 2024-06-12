@@ -65,3 +65,4 @@ Route::put('update-product/{id}', [SellerController::class, 'updateProduct'])->n
 Route::get('checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.page');
 Route::post('process-checkout', [CheckoutController::class, 'processCheckout'])->name('process.checkout');
 Route::get('order/{order}', [CheckoutController::class, 'showOrder'])->name('order.show');
+Route::get('receipt', [CheckoutController::class, 'showReceiptPage'])->name('receipt.page');

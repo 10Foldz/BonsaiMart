@@ -68,4 +68,19 @@ class CheckoutController extends Controller
 
         return view('flow.order', compact('order', 'orderItems'));
     }
+    public function showReceiptPage()
+    {
+        $order = Order::where('user_id', Auth::id())->latest()->first();
+        if (!$order) {
+            return redirect()->route('checkout.page')->with('error', 'No recent order found.');
+        }
+
+        $orderItems = $order->orderItems()->with('product')->get();
+        $totalQuantity = $orderItems->sum('quantity');
+        $totalPrice = $orderItems->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
+
+        return view('flow.receiptpage', compact('order', 'orderItems', 'totalQuantity', 'totalPrice'));
+    }
 }
