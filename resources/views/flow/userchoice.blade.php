@@ -104,11 +104,5 @@
             <span>Not you? <a href="{{ route('logout') }}">Sign out</a></span>
         </div>
     </div>
-    <div class="social-logos">
-        <a href="#"><img src="/images/phone.png" alt="Phone Logo"></a>
-        <a href="#"><img src="/images/twitter.png" alt="Twitter Logo"></a>
-        <a href="#"><img src="/images/facebook.png" alt="Facebook Logo"></a>
-        <a href="#"><img src="/images/instagram.png" alt="Instagram Logo"></a>
-    </div>
 </body>
 </html>
