@@ -153,7 +153,7 @@
                             <p class="m-0" style="color: #B6B4B4; font-size: 13px;">{{ $product->product_description }}</p>
                         </div>
                         <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                            <p class="m-0">Rp. {{ $product->price }}</p>
+                            <p class="m-0">Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
                             <form action="{{ route('add.to.cart', $product->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-primary" style="font-size:15px">
@@ -169,9 +169,14 @@
     <div class="back-button">
         <a href="javascript:history.back()">← Back</a>
     </div>
+    <script>
+        function formatCurrency(amount) {
+            return amount.toLocaleString('id-ID');
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></scrip>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

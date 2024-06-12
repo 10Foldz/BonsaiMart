@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('/', function () {
     return view('index');
@@ -60,3 +61,7 @@ Route::get('seller-product', [SellerController::class, 'sellerProductPage'])->na
 Route::delete('delete-product/{id}', [SellerController::class, 'deleteProduct'])->name('delete.product');
 Route::get('edit-product/{id}', [SellerController::class, 'editProduct'])->name('edit.product');
 Route::put('update-product/{id}', [SellerController::class, 'updateProduct'])->name('update.product');
+
+Route::get('checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.page');
+Route::post('process-checkout', [CheckoutController::class, 'processCheckout'])->name('process.checkout');
+Route::get('order/{order}', [CheckoutController::class, 'showOrder'])->name('order.show');

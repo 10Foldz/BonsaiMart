@@ -6,16 +6,17 @@
     <title>Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             color: white;
             background: url('/images/background3.jpg') center center fixed;
-            font-family: 'Baskervville', sans-serif;
-            overflow-x: hidden;
+            font-family: 'Baskervville', serif;
+            overflow: hidden;
             margin: 0;
         }
         .back-button {
-            position: absolute;
+            position: fixed;
             bottom: 30px;
             left: 30px;
         }
@@ -34,8 +35,74 @@
             background-color: #555;
             box-shadow: 3px 3px 15px #00000090;
         }
+        .nav {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 80px;
+            align-items: center;
+            z-index: 2;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        .nav a:hover {
+            color: #bbb;
+        }
+        .hamburger {
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+        }
+        .logo {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            font-size: 1.5em;
+            z-index: 2;
+            color: #fff;
+        }
+        .header {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+        hr {
+            margin-top: 100px;
+            background-color: white;
+            height: 1px;
+            border: none;
+        }
         .content-container {
             margin-top: 20px;
+            top: 100px; /* Adjust based on your fixed header height */
+            bottom: 0px; /* Adjust based on your fixed footer height */
+            left: 0;
+            right: 0;
+            overflow-y: auto;
+            z-index: 1;
+            height: calc(100vh - 150px);
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 50px;
+            height: 100%;
         }
         .cart-item {
             background-color: #242428bd;
@@ -56,6 +123,7 @@
         }
         .cart-item .product-info p {
             margin: 0;
+            font-family: 'Arial', sans-serif;
         }
         .cart-item .quantity {
             display: flex;
@@ -95,10 +163,12 @@
             color: white;
             border-radius: 15px;
             box-shadow: 3px 3px 10px #00000070;
+            z-index: 2;
         }
         .checkout-container .total-price {
             font-size: 1.2em;
             margin-bottom: 10px;
+            font-family: 'Arial', sans-serif;
         }
         .checkout-container .btn-checkout {
             background-color: #28a745;
@@ -115,45 +185,57 @@
     </style>
 </head>
 <body>
+    <div class="logo">BONSAIMART</div>
+    <div class="nav">
+        <a href="{{ route('about.page') }}">About</a>
+        <a href="{{ route('product.page') }}">Market</a>
+        <a href="#">Contact</a>
+        <a href="{{ route('cart.page') }}" class="fs-6">
+            <i class="fa-solid fa-bag-shopping icon-nav"></i>
+        </a>
+    </div>
+    <hr>
     <div class="back-button">
         <a href="javascript:history.back()">← Back</a>
     </div>
     <div class="container content-container">
-        <h1>Your Cart</h1>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if ($cartItems->isEmpty())
-            <p>Your cart is empty</p>
-        @else
-            @foreach ($cartItems as $item)
-                <div class="cart-item d-flex align-items-center">
-                    <img src="{{ asset('images/' . $item->product->product_image) }}" alt="{{ $item->product->product_name }}">
-                    <div class="product-info">
-                        <p><strong>{{ $item->product->product_name }}</strong></p>
-                        <p>{{ $item->product->product_description }}</p>
-                        <p>Rp. <span class="item-price" data-price="{{ $item->product->price }}">{{ $item->product->price * $item->quantity }}</span></p>
-                    </div>
-                    <div class="quantity">
-                        <button class="btn-decrease" data-id="{{ $item->id }}">-</button>
-                        <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" data-id="{{ $item->id }}" readonly>
-                        <button class="btn-increase" data-id="{{ $item->id }}">+</button>
-                    </div>
-                    <form action="{{ route('remove.from.cart', $item->id) }}" method="POST" class="delete-button">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Remove</button>
-                    </form>
+        <div class="content">
+            <h1>Your Cart</h1>
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
                 </div>
-            @endforeach
-        @endif
+            @endif
+            @if ($cartItems->isEmpty())
+                <p>Your cart is empty</p>
+            @else
+                @foreach ($cartItems as $item)
+                    <div class="cart-item d-flex align-items-center">
+                        <img src="{{ asset('images/' . $item->product->product_image) }}" alt="{{ $item->product->product_name }}">
+                        <div class="product-info">
+                            <p><strong>{{ $item->product->product_name }}</strong></p>
+                            <p>{{ $item->product->product_description }}</p>
+                            <p>Rp. <span class="item-price" data-price="{{ $item->product->price }}">{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span></p>
+                        </div>
+                        <div class="quantity">
+                            <button class="btn-decrease" data-id="{{ $item->id }}">-</button>
+                            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" data-id="{{ $item->id }}" readonly>
+                            <button class="btn-increase" data-id="{{ $item->id }}">+</button>
+                        </div>
+                        <form action="{{ route('remove.from.cart', $item->id) }}" method="POST" class="delete-button">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </div>
+                @endforeach
+            @endif
+        </div>
     </div>
 
     <div class="checkout-container">
         <span class="total-price">Total: Rp. <span id="total-price">0</span></span>
-        <button class="btn-checkout">Checkout</button>
+        <a href="{{ route('checkout.page') }}"><button class="btn-checkout">Checkout</button></a>
     </div>
 
     <script>
@@ -163,12 +245,16 @@
             const quantityInputs = document.querySelectorAll('.quantity input');
             const totalPriceElement = document.getElementById('total-price');
 
+            function formatCurrency(amount) {
+                return amount.toLocaleString('id-ID');
+            }
+
             function updateTotalPrice() {
                 let total = 0;
                 document.querySelectorAll('.item-price').forEach(priceSpan => {
-                    total += parseFloat(priceSpan.textContent);
+                    total += parseFloat(priceSpan.getAttribute('data-price')) * parseInt(priceSpan.closest('.cart-item').querySelector('input').value);
                 });
-                totalPriceElement.textContent = total;
+                totalPriceElement.textContent = formatCurrency(total);
             }
 
             function updateCart(id, quantity) {
@@ -185,7 +271,7 @@
                     if (data.success) {
                         const priceSpan = document.querySelector(`input[data-id="${id}"]`).closest('.cart-item').querySelector('.item-price');
                         const price = priceSpan.getAttribute('data-price');
-                        priceSpan.textContent = price * quantity;
+                        priceSpan.textContent = formatCurrency(price * quantity);
                         updateTotalPrice();
                     }
                 });
@@ -193,31 +279,20 @@
 
             decreaseButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    const input = document.querySelector(`input[data-id="${id}"]`);
-                    if (input.value > 1) {
-                        input.value--;
-                        const quantity = parseInt(input.value);
-                        const priceSpan = input.closest('.cart-item').querySelector('.item-price');
-                        const price = parseFloat(priceSpan.getAttribute('data-price'));
-                        priceSpan.textContent = price * quantity;
-                        updateTotalPrice();
-                        updateCart(id, quantity);
+                    const input = this.nextElementSibling;
+                    const quantity = parseInt(input.value);
+                    if (quantity > 1) {
+                        input.value = quantity - 1;
+                        updateCart(this.getAttribute('data-id'), input.value);
                     }
                 });
             });
 
             increaseButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    const input = document.querySelector(`input[data-id="${id}"]`);
-                    input.value++;
-                    const quantity = parseInt(input.value);
-                    const priceSpan = input.closest('.cart-item').querySelector('.item-price');
-                    const price = parseFloat(priceSpan.getAttribute('data-price'));
-                    priceSpan.textContent = price * quantity;
-                    updateTotalPrice();
-                    updateCart(id, quantity);
+                    const input = this.previousElementSibling;
+                    input.value = parseInt(input.value) + 1;
+                    updateCart(this.getAttribute('data-id'), input.value);
                 });
             });
 

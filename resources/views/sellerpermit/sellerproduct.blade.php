@@ -201,7 +201,7 @@
                             </div>
                             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                                 <p class="m-0">Rp.</p>
-                                <p class="m-0">{{ $product->price }}</p>
+                                <p class="m-0">{{ number_format($product->price, 0, ',', '.') }}</p>
                                 <div class="btn-group">
                                     <a href="{{ route('edit.product', $product->id) }}" class="btn btn-outline-warning" style="font-size:15px">
                                         <i class="fa-solid fa-edit"></i> Edit
@@ -253,6 +253,9 @@
                     }
                 }
             }
+        }
+        function formatCurrency(amount) {
+            return amount.toLocaleString('id-ID');
         }
     </script>
 </body>

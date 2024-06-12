@@ -27,7 +27,12 @@ class CartController extends Controller
     public function cartPage()
     {
         $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
-        return view('flow.cartpage', compact('cartItems'));
+        $totalQuantity = $cartItems->sum('quantity');
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        return view('flow.cartpage', compact('cartItems', 'totalQuantity', 'totalPrice'));
     }
 
     public function updateCart(Request $request, $id)
@@ -46,4 +51,14 @@ class CartController extends Controller
         return redirect()->route('cart.page')->with('success', 'Item removed from cart!');
     }
 
+    public function checkoutPage()
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        $totalQuantity = $cartItems->sum('quantity');
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        return view('flow.checkout', compact('cartItems', 'totalQuantity', 'totalPrice'));
+    }
 }
