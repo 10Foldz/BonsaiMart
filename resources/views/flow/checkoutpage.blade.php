@@ -230,6 +230,7 @@
             @endif
             @if ($cartItems->isEmpty())
                 <p>Your cart is empty</p>
+                <p>If you want to check your recent receipt, head to menu and then click View Receipt</p>
             @else
                 <div class="cart-items-container">
                     <div class="cart-items">
