@@ -87,6 +87,15 @@
             border-color: #24481f;
             text-decoration: underline;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .nav {
             position: absolute;
             top: 30px;
@@ -187,7 +196,7 @@
     </div>
     @endif
     <div class="add-product-container">
-        <div class="logo">BONSAIMART</div>
+        <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
         <h1>Add Product</h1>
         <div class="form-container">
             <form action="{{ route('add.product') }}" method="POST" enctype="multipart/form-data">

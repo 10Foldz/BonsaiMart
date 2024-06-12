@@ -158,6 +158,15 @@
             font-size: 1.5em;
             z-index: 1;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .dropdown {
             display: none;
             position: absolute;
@@ -188,7 +197,7 @@
     </style>
 </head>
 <body>
-    <div class="logo">BONSAIMART</div>
+    <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
     <div class="container">
         <div class="sidebar">
             <h1>

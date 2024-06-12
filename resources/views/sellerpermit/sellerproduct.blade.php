@@ -45,6 +45,15 @@
             align-items: center;
             font-family: 'Baskervville', serif;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .nav a {
             color: #fff;
             text-decoration: none;
@@ -171,7 +180,7 @@
     </div>
     @endif
     <div class="add-product-container">
-        <div class="logo">BONSAIMART</div>
+        <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
         <div class="back-button">
             <a href="{{ route('seller.view') }}">← Back</a>
         </div>

@@ -36,6 +36,15 @@
             background-color: #555;
             box-shadow: 3px 3px 15px #00000090;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .nav {
             position: fixed;
             top: 30px;
@@ -128,7 +137,7 @@
     </style>
 </head>
 <body>
-    <div class="logo">BONSAIMART</div>
+    <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
     <div class="nav">
         <a href="{{ route('about.page') }}">About</a>
         <a href="{{ route('product.page') }}">Market</a>

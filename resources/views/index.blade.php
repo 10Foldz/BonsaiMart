@@ -102,6 +102,15 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .nav {
             position: absolute;
             top: 30px;
@@ -141,7 +150,7 @@
     </style>
 </head>
 <body>
-    <div class="logo">BONSAIMART</div>
+    <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
     <div class="container">
         <div class="sidebar">
             <h1>

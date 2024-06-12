@@ -55,6 +55,15 @@
             gap: 80px;
             align-items: center;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .nav a {
             color: #fff;
             text-decoration: none;
@@ -95,7 +104,7 @@
     </style>
 </head>
 <body>
-    <div class="logo">BONSAIMART</div>
+    <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
     <div class="nav">
         <a href="{{ route('about.page') }}">About</a>
         <a href="{{ route('product.page') }}">Market</a>

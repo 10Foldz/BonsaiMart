@@ -37,6 +37,15 @@
             border-color: #24481f;
             text-decoration: underline;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #bbb;
+        }
         .nav {
             position: absolute;
             top: 30px;
@@ -160,7 +169,7 @@
 </head>
 <body>
     <div class="add-product-container">
-        <div class="logo">BONSAIMART</div>
+        <a href="{{ route('home') }}" div class="logo">BONSAIMART</a>
         <div class="back-button">
             <a href="{{ route('seller.product') }}">← Back</a>
         </div>
@@ -204,7 +213,7 @@
                         </form>
                     </div>
                     <div class="card-footer">
-                        <p>Current Price: Rp.{{ $product->price }}</p>
+                        <p>Current Price: Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
@@ -217,6 +226,9 @@
         function toggleDropdown() {
             var dropdownMenu = document.getElementById('dropdownMenu');
             dropdownMenu.classList.toggle('show');
+        }
+        function formatCurrency(amount) {
+            return amount.toLocaleString('id-ID');
         }
     </script>
 </body>
