@@ -134,6 +134,33 @@
         .card-footer p {
             font-size: 20px;
         }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #1e1e1e;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            transition: all 0.3s ease-in-out;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dropdown a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown a:hover {
+            background-color: #333;
+        }
+        .show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -145,6 +172,14 @@
         <a href="{{ route('cart.page') }}" class="fs-6">
             <i class="fa-solid fa-bag-shopping icon-nav"></i>
         </a>
+        <div class="hamburger" onclick="toggleDropdown()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="dropdown" id="dropdown">
+            <a href="{{ route('receipt.page') }}">View receipt</a>
+        </div>
     </div>
     <hr>
     <div class="content-container">
@@ -181,6 +216,21 @@
     <script>
         function formatCurrency(amount) {
             return amount.toLocaleString('id-ID');
+        }
+
+        function toggleDropdown() {
+            document.getElementById("dropdown").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.hamburger') && !event.target.matches('.hamburger div')) {
+                var dropdowns = document.getElementsByClassName("dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
         }
     </script>
 

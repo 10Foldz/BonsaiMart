@@ -40,7 +40,7 @@ class CartController extends Controller
         $cart = Cart::findOrFail($id);
         $cart->update(['quantity' => $request->quantity]);
 
-        return redirect()->route('cart.page')->with('success', 'Cart updated successfully!');
+        return redirect()->route('cart.page');
     }
 
     public function removeFromCart($id)

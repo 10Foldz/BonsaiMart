@@ -183,6 +183,33 @@
         .item-price, .total-price {
             font-family: 'Arial', sans-serif; /* Apply new font */
         }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #1e1e1e;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            transition: all 0.3s ease-in-out;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dropdown a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown a:hover {
+            background-color: #333;
+        }
+        .show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -194,10 +221,13 @@
         <a href="{{ route('about.page') }}">About</a>
         <a href="{{ route('product.page') }}">Market</a>
         <a href="#">Contact</a>
-        <div class="hamburger">
+        <div class="hamburger"onclick="toggleDropdown()">
             <div></div>
             <div></div>
             <div></div>
+        </div>
+        <div class="dropdown" id="dropdown">
+            <a href="{{ route('receipt.page') }}">View receipt</a>
         </div>
     </div>
     <hr>
@@ -250,10 +280,19 @@
                 return amount.toLocaleString('id-ID');
             }
 
+            function updateItemPrice(button, quantity) {
+                const priceSpan = button.closest('.cart-item').querySelector('.item-price');
+                const price = parseFloat(priceSpan.getAttribute('data-price'));
+                priceSpan.textContent = formatCurrency(price * quantity);
+                updateTotalPrice();
+            }
+
             function updateTotalPrice() {
                 let total = 0;
                 document.querySelectorAll('.item-price').forEach(priceSpan => {
-                    total += parseFloat(priceSpan.getAttribute('data-price')) * parseInt(priceSpan.closest('.cart-item').querySelector('input').value);
+                    const price = parseFloat(priceSpan.getAttribute('data-price'));
+                    const quantity = parseInt(priceSpan.closest('.cart-item').querySelector('input').value);
+                    total += price * quantity;
                 });
                 totalPriceElement.textContent = formatCurrency(total);
             }
@@ -284,6 +323,7 @@
                     const quantity = parseInt(input.value);
                     if (quantity > 1) {
                         input.value = quantity - 1;
+                        updateItemPrice(this, input.value);
                         updateCart(this.getAttribute('data-id'), input.value);
                     }
                 });
@@ -293,12 +333,27 @@
                 button.addEventListener('click', function() {
                     const input = this.previousElementSibling;
                     input.value = parseInt(input.value) + 1;
+                    updateItemPrice(this, input.value);
                     updateCart(this.getAttribute('data-id'), input.value);
                 });
             });
 
             updateTotalPrice();
         });
+        function toggleDropdown() {
+            document.getElementById("dropdown").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.hamburger') && !event.target.matches('.hamburger div')) {
+                var dropdowns = document.getElementsByClassName("dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>
