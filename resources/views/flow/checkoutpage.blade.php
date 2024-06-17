@@ -113,11 +113,14 @@
         }
         .content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 120px;
             width: 100%;
             max-width: 1200px;
+            text-align: center;
         }
         .cart-items-container {
             width: 40%;
